@@ -11,9 +11,9 @@ $version['cancel_expire']   = true; // Possible to stop auto-renew for domains? 
 // Information for customer (will be showed at registrar-show-page)
 $version['dev_logo']		= 'https://cdn.domainnameapi.com/design/images/logo-domain-name-api.png'; // URL to your logo
 $version['dev_author']		= 'Domain Name Api'; // Your companyname
-$version['dev_website']		= 'https://www.domainnameapi.com/'; // URL website
+$version['dev_website']		= 'https://www.domainnameapi.com'; // URL website
 $version['dev_email']		= 'support@domainnameapi.com'; // Your e-mailaddress for support questions
-//$version['dev_phone']		= ''; // Your phone number for support questions
+$version['dev_phone']		= '+90 (0262) 325 92 22'; // Your phone number for support questions
 
 // Does this registrar integration support functions related to domains?
 $version['domain_support']  = true;
