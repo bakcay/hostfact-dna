@@ -15,18 +15,18 @@
 
 1.  Navigieren Sie zu `Control -> Services -> Registrare`.
 
-    ![img_1.png](img_1.png)
+    ![img1.png](img1.png)
 
 2.  Klicken Sie auf die Schaltfläche **"Registrar hinzufügen"**.
 
-    ![img_2.png](img_2.png)
+    ![img2.png](img2.png)
 
 3.  Wählen Sie **"DomainNameApi"** als API aus.
 
 
 4.  Geben Sie Ihren Benutzernamen und Ihr Passwort ein.
 
-    ![img_3.png](img_3.png)
+    ![img3.png](img3.png)
 
 5.  Klicken Sie auf **"Speichern"**.
 
@@ -35,11 +35,11 @@
 1.  Nach dem Speichern der Registrar-Einstellungen werden Sie zum Bildschirm für den Domain-Import weitergeleitet.
 2.  Hier können Sie die gewünschten Domains auswählen und importieren.
 
-    ![img_4.png](img_4.png)
-    ![img_5.png](img_5.png)
+    ![img4.png](img4.png)
+    ![img5.png](img5.png)
 
 ## Verwendung
 
 1.  Nach der Konfiguration und dem Import können Sie Produkte erstellen sowie Domains über die DomainNameApi-Integration registrieren und verwalten.
 
-    ![img_6.png](img_6.png) 
+    ![img6.png](img6.png) 

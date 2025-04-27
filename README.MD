@@ -15,18 +15,18 @@
 
 1.  Navigeer naar `Control -> Services -> Registrars`.
 
-   ![img_1.png](img_1.png)
+   ![img1.png](img1.png)
 
 2.  Klik op de knop **"Registrar Toevoegen"**.
 
-    ![img_2.png](img_2.png)
+    ![img2.png](img2.png)
 
 3.  Selecteer **"DomainNameApi"** als de API.
 
 
 4.  Voer uw gebruikersnaam en wachtwoord in.
 
-    ![img_3.png](img_3.png)
+    ![img3.png](img3.png)
 
 5.  Klik op **"Opslaan"**.
 
@@ -35,11 +35,11 @@
 1.  Na het opslaan van de registrar-instellingen, wordt u doorverwezen naar het scherm voor het importeren van domeinen.
 2.  Hier kunt u de gewenste domeinen selecteren en importeren.
 
-    ![img_4.png](img_4.png)
-    ![img_5.png](img_5.png)
+    ![img4.png](img4.png)
+    ![img5.png](img5.png)
 
 ## Gebruik
 
 1.  Na de configuratie en import kunt u producten aanmaken en domeinen registreren en beheren via de DomainNameApi integratie.
 
-    ![img_6.png](img_6.png)
+    ![img6.png](img6.png)

@@ -15,18 +15,18 @@
 
 1.  `Kontrol -> Servisler -> Kayıt Operatörleri` bölümüne gidin.
 
-    ![img_1.png](img_1.png)
+    ![img1.png](img1.png)
 
 2.  **"Kayıt Operatörü Ekle"** düğmesine tıklayın.
 
-    ![img_2.png](img_2.png)
+    ![img2.png](img2.png)
 
 3.  API olarak **"DomainNameApi"** seçeneğini seçin.
 
 
 4.  Kullanıcı adınızı ve şifrenizi girin.
 
-    ![img_3.png](img_3.png)
+    ![img3.png](img3.png)
 
 5.  **"Kaydet"** düğmesine tıklayın.
 
@@ -35,11 +35,11 @@
 1.  Kayıt operatörü ayarlarını kaydettikten sonra, alan adı içe aktarma ekranına yönlendirileceksiniz.
 2.  Burada istediğiniz alan adlarını seçip içe aktarabilirsiniz.
 
-    ![img_4.png](img_4.png)
-    ![img_5.png](img_5.png)
+    ![img4.png](img4.png)
+    ![img5.png](img5.png)
 
 ## Kullanım
 
 1.  Yapılandırma ve içe aktarma işleminden sonra, DomainNameApi entegrasyonu aracılığıyla ürünler oluşturabilir, alan adlarını kaydedebilir ve yönetebilirsiniz.
 
-    ![img_6.png](img_6.png) 
+    ![img6.png](img6.png) 
