@@ -5,41 +5,41 @@
   <a href="README.md"> | NL <img style="padding-top: 8px" src="https://raw.githubusercontent.com/yammadev/flag-icons/master/png/NL.png" alt="NL" height="20" /></a>  
 </div>
 
-# DomainNameApi Integratie Documentatie (NL)
+# DomainNameApi Integration Documentation (EN)
 
-## Installatie
+## Installation
 
-1.  Plaats de map `domainnameapi` in de map `Pro/3rdparty/domain/`, of upload deze via FTP.
+1.  Place the `domainnameapi` folder into the `Pro/3rdparty/domain/` directory, or upload it via FTP.
 
-## Configuratie in het Control Panel
+## Configuration in the Control Panel
 
-1.  Navigeer naar `Control -> Services -> Registrars`.
+1.  Navigate to `Control -> Services -> Registrars`.
 
-   ![img1.png](img1.png)
+    ![img1.png](img1.png)
 
-2.  Klik op de knop **"Registrar Toevoegen"**.
+2.  Click the **"Add Registrar"** button.
 
     ![img2.png](img2.png)
 
-3.  Selecteer **"DomainNameApi"** als de API.
+3.  Select **"DomainNameApi"** as the API.
 
 
-4.  Voer uw gebruikersnaam en wachtwoord in.
+4.  Enter your username and password.
 
     ![img3.png](img3.png)
 
-5.  Klik op **"Opslaan"**.
+5.  Click **"Save"**.
 
-## Domeinen Importeren
+## Importing Domains
 
-1.  Na het opslaan van de registrar-instellingen, wordt u doorverwezen naar het scherm voor het importeren van domeinen.
-2.  Hier kunt u de gewenste domeinen selecteren en importeren.
+1.  After saving the registrar settings, you will be redirected to the domain import screen.
+2.  Here you can select and import the desired domains.
 
     ![img4.png](img4.png)
     ![img5.png](img5.png)
 
-## Gebruik
+## Usage
 
-1.  Na de configuratie en import kunt u producten aanmaken en domeinen registreren en beheren via de DomainNameApi integratie.
+1.  After configuration and import, you can create products and register and manage domains through the DomainNameApi integration.
 
-    ![img6.png](img6.png)
+    ![img6.png](img6.png) 
