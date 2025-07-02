@@ -33,7 +33,7 @@ class DomainNameApi implements IRegistrar
     
     public function dna(){
         if($this->dnaService == null){
-            $this->dnaService = new DNA($this->User, $this->Password);
+            $this->dnaService = new DNA($this->User, $this->Password,false);
         }
         return $this->dnaService;
     }
@@ -47,10 +47,13 @@ class DomainNameApi implements IRegistrar
 	 */
 	function checkDomain($domain) {
 
-		$domainParts = explode('.', $domain);
-		$sld = $domainParts[0];
-		$tld = $domainParts[1];
-        
+	    $domainParts = explode('.', $domain, 2);
+        if (count($domainParts) < 2) {
+            $this->Error[] = 'Geçersiz domain formatı';
+            return false;
+        }
+        $sld = $domainParts[0];
+        $tld = $domainParts[1];
         
 		$result = $this->dna()->CheckAvailability([$sld], [$tld], 1, 'create');
 		
@@ -91,30 +94,12 @@ class DomainNameApi implements IRegistrar
 	 */
 	function registerDomain($domain, $nameservers = array(), $whois = null) {
 
-		$contact = array(
-			"FirstName" => $whois->ownerSurName,
-			"LastName" => $whois->ownerSurName,
-			"Company" => $whois->ownerCompanyName,
-			"EMail" => $whois->ownerEmailAddress,
-			"AddressLine1" => $whois->ownerAddress,
-			"City" => $whois->ownerCity,
-			"Country" => $whois->ownerCountry,
-			"Phone" => $whois->ownerPhoneNumber,
-			"PhoneCountryCode" => $whois->ownerCountryCode,
-			"Type" => "Contact",
-			"ZipCode" => $whois->ownerZipCode,
-			"State" => $whois->ownerState
-		);
+		$contact = $this->buildAllContacts($whois);
 		
 		$result = $this->dna()->RegisterWithContactInfo(
 			$domain,
 			1,
-			[
-				'Administrative' => $contact,
-				'Billing' => $contact,
-				'Technical' => $contact,
-				'Registrant' => $contact
-			],
+			$contact,
 			$nameservers,
 			true,
 			false
@@ -138,30 +123,12 @@ class DomainNameApi implements IRegistrar
 	 */
 	function transferDomain($domain, $nameservers = array(), $whois = null, $authcode = "") {
 
-		$contact = array(
-			"FirstName" => $whois->ownerSurName,
-			"LastName" => $whois->ownerSurName,
-			"Company" => $whois->ownerCompanyName,
-			"EMail" => $whois->ownerEmailAddress,
-			"AddressLine1" => $whois->ownerAddress,
-			"City" => $whois->ownerCity,
-			"Country" => $whois->ownerCountry,
-			"Phone" => $whois->ownerPhoneNumber,
-			"PhoneCountryCode" => $whois->ownerCountryCode,
-			"Type" => "Contact",
-			"ZipCode" => $whois->ownerZipCode,
-			"State" => $whois->ownerState
-		);
+		$contact = $this->buildAllContacts($whois);
 		
 		$result = $this->dna()->Transfer(
 			$domain,
 			$authcode,
-			[
-				'Administrative' => $contact,
-				'Billing' => $contact,
-				'Technical' => $contact,
-				'Registrant' => $contact
-			],
+			$contact,
 			$nameservers
 		);
 		
@@ -336,7 +303,6 @@ class DomainNameApi implements IRegistrar
 					$list_domains[$domain_name]['Status'] = 'success';
 				}
 			}
-			
 			return $list_domains;
 		} else {
 			$this->Error[] = 'Could not sync domain data';
@@ -353,27 +319,9 @@ class DomainNameApi implements IRegistrar
 	 */
 	function updateDomainWhois($domain, $whois) {
 
-		$contact = array(
-			"FirstName" => $whois->ownerSurName,
-			"LastName" => $whois->ownerSurName,
-			"Company" => $whois->ownerCompanyName,
-			"EMail" => $whois->ownerEmailAddress,
-			"AddressLine1" => $whois->ownerAddress,
-			"City" => $whois->ownerCity,
-			"Country" => $whois->ownerCountry,
-			"Phone" => $whois->ownerPhoneNumber,
-			"PhoneCountryCode" => $whois->ownerCountryCode,
-			"Type" => "Contact",
-			"ZipCode" => $whois->ownerZipCode,
-			"State" => $whois->ownerState
-		);
+		$contact = $this->buildAllContacts($whois);
 		
-		$result = $this->dna()->SaveContacts($domain, [
-			'Administrative' => $contact,
-			'Billing' => $contact,
-			'Technical' => $contact,
-			'Registrant' => $contact
-		]);
+		$result = $this->dna()->SaveContacts($domain, $contact);
 		
 		if(isset($result['result']) && $result['result'] == 'OK') {
 			return true;
@@ -415,27 +363,9 @@ class DomainNameApi implements IRegistrar
 	 */
 	function createContact($whois, $type = HANDLE_OWNER) {
 
-		$contact = array(
-			"FirstName" => $whois->ownerSurName,
-			"LastName" => $whois->ownerSurName,
-			"Company" => $whois->ownerCompanyName,
-			"EMail" => $whois->ownerEmailAddress,
-			"AddressLine1" => $whois->ownerAddress,
-			"City" => $whois->ownerCity,
-			"Country" => $whois->ownerCountry,
-			"Phone" => $whois->ownerPhoneNumber,
-			"PhoneCountryCode" => $whois->ownerCountryCode,
-			"Type" => "Contact",
-			"ZipCode" => $whois->ownerZipCode,
-			"State" => $whois->ownerState
-		);
+		$contact = $this->buildAllContacts($whois);
 		
-		$result = $this->dna()->SaveContacts('', [
-			'Administrative' => $contact,
-			'Billing' => $contact,
-			'Technical' => $contact,
-			'Registrant' => $contact
-		]);
+		$result = $this->dna()->SaveContacts('', $contact);
 		
 		if(isset($result['result']) && $result['result'] == 'OK') {
 			return $result['data']['Contacts']['Registrant']['ID'];
@@ -455,27 +385,9 @@ class DomainNameApi implements IRegistrar
 	 */
 	function updateContact($handle, $whois, $type = HANDLE_OWNER) {
 
-		$contact = array(
-			"FirstName" => $whois->ownerSurName,
-			"LastName" => $whois->ownerSurName,
-			"Company" => $whois->ownerCompanyName,
-			"EMail" => $whois->ownerEmailAddress,
-			"AddressLine1" => $whois->ownerAddress,
-			"City" => $whois->ownerCity,
-			"Country" => $whois->ownerCountry,
-			"Phone" => $whois->ownerPhoneNumber,
-			"PhoneCountryCode" => $whois->ownerCountryCode,
-			"Type" => "Contact",
-			"ZipCode" => $whois->ownerZipCode,
-			"State" => $whois->ownerState
-		);
+		$contact = $this->buildAllContacts($whois);
 		
-		$result = $this->dna()->SaveContacts('', [
-			'Administrative' => $contact,
-			'Billing' => $contact,
-			'Technical' => $contact,
-			'Registrant' => $contact
-		]);
+		$result = $this->dna()->SaveContacts('', $contact);
 		
 		if(isset($result['result']) && $result['result'] == 'OK') {
 			return true;
@@ -629,4 +541,32 @@ class DomainNameApi implements IRegistrar
 		return false;
 	}
 	
+    private function buildContactArray($whois): array
+    {
+        return [
+            "FirstName" => $whois->ownerSurName,
+            "LastName" => $whois->ownerSurName,
+            "Company" => $whois->ownerCompanyName,
+            "EMail" => $whois->ownerEmailAddress,
+            "AddressLine1" => $whois->ownerAddress,
+            "City" => $whois->ownerCity,
+            "Country" => $whois->ownerCountry,
+            "Phone" => $whois->ownerPhoneNumber,
+            "PhoneCountryCode" => $whois->ownerCountryCode,
+            "Type" => "Contact",
+            "ZipCode" => $whois->ownerZipCode,
+            "State" => $whois->ownerState
+        ];
+    }
+
+    private function buildAllContacts($whois): array
+    {
+        $contact = $this->buildContactArray($whois);
+        return [
+            'Administrative' => $contact,
+            'Billing' => $contact,
+            'Technical' => $contact,
+            'Registrant' => $contact
+        ];
+    }
 }
