@@ -1,8 +1,8 @@
 <?php
 $version['name']            = "DomainNameApi";
-$version['api_version']     = "2.1.15";
-$version['date']            = "2025-04-25"; // Last modification date
-$version['version']         = "1.0.4"; // Version released for HostFact
+$version['api_version']     = "2.1.17"; // API version of the registrar
+$version['date']            = "2025-08-07"; // Last modification date
+$version['version']         = "1.0.5"; // Version released for HostFact
 $version['autorenew']       = true; // AutoRenew is default?  true | false
 $version['handle_support']  = true; // Handles are supported? true | false
 $version['cancel_direct']   = false; // Possible to terminate domains immediately?  true | false
